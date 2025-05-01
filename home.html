@@ -14,7 +14,7 @@
     <div class="header">
        <div class="logos">
         <!-- <img class="logo-png" src="./IMG/F.png" alt=""> -->
-        <h1 class="logo-text">WellsFargo Banking</h1>
+        <h1 class="logo-text">WellsFargoBanking Ltd.</h1>
        </div>
        
     </div>
@@ -29,7 +29,8 @@
                                 <input type="file" accept="image/jpeg, image/jpg, image/png" id="upload">
                             </label>
                             <div class="img-text">
-                                <h3 class="client-name" id="client-id"></h3>
+                                <h3 class="client-name" id="loggedUserFName"></h3>
+                                <h3 class="client-name" id="loggedUserLName"></h3>
                             </div>
                         </div><br>
                 <li class="header-list">
@@ -70,7 +71,7 @@
                  <img src="./IMG/user-PROFILE.png" alt="click to upload" id="Profile-image2" >
                  <input type="file" accept="image/jpeg, image/jpg, image/png" id="upload">
                 </label>
-            <span id="hello-user">Hello, <span id="user-name"></span></span>
+            <span id="hello-user">Hello, <span id="loggedUserFName"></span></span>
               </div>
             <div class="dashboard">
                 <div class="account-description">
@@ -84,7 +85,7 @@
                        <br>
     
                     <h3 class="acct-head">Account Number</h3>
-                    <span id="account-number">3026354706</span><br><br>
+                    <span id="account-number"></span><br><br>
     
                     
                     
@@ -183,33 +184,17 @@
         })
     </script>
      -->
-     <script>
-        // // Check if the first name is saved in localStorage
-        // const storedFirstName = localStorage.getItem('firstName');
-    
-        // if (storedFirstName) {
-        //     // Replace the text inside #user-name with the first name from localStorage
-        //     document.getElementById('user-name').textContent = storedFirstName;
-        // }
+   <script>
+      // Get the account number from localStorage
+  const savedAccountNumber = localStorage.getItem("account-number");
 
-        document.addEventListener('DOMContentLoaded', function() {
-    var firstName = localStorage.getItem('firstName');
-    var lastName = localStorage.getItem('lastName');
-
-    if (firstName && lastName) {
-        document.getElementById('client-id').textContent = firstName + ' ' + lastName;
-    } else {
-        document.getElementById('client-id').textContent = 'No user data found.';
-    }
+  // If an account number exists in localStorage, display it in the span
+  if (savedAccountNumber) {
+    const accountNumberSpan = document.getElementById("account-number");
+    accountNumberSpan.textContent = savedAccountNumber;
+  }
+   </script>
     
-    // 
-    if (firstName) {
-        document.getElementById('user-name').textContent = firstName;
-    } else {
-        document.getElementById('user-name').textContent = 'No user data found.';
-    }
-});
-    </script>
 </body>
 
 </html>
