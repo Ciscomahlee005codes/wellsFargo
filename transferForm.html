@@ -10,25 +10,33 @@
     "crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="container">
+    <div class="TransferFormcontainer">
         <div class="header">
+<<<<<<< HEAD
             <div class="logos">
              <!-- <img class="logo-png" src="./IMG/F.png" alt=""> -->
              <h1 class="logo-text">WellsFargo Banking Ltd.</h1>
             </div>
          </div>
          <a href="..//HTML/home.html" class="back-link">Back to Home</a>
+=======
+            <h1 class="logo-text">WellsFargo Banking</h1>
+        </div>
+
+>>>>>>> 9114887722ec6bcd07d4b31f0dea891f30c5ef90
         <div class="form-body">
         <h1>Send Money</h1>
         <a href="./home.html" class="back-link"> <<< Back to Home</a><br><br>
         <!-- Buttons to Switch Between Forms -->
         <div class="button-group">
             <button id="localTransferBtn" class="active">Inter Bank Transfer</button>
-            <button id="foreignTransferBtn">Domestic Transfer</button>
-            <button id="wireTransferBtn">Wire Transfer</button>
+            <button id="foreignTransferBtn" class="active">Domestic Transfer</button>
+            <button id="wireTransferBtn" class="active">Wire Transfer</button>
             <button id="foreignTransferBtn">Crypto Currency</button>
             <button id="foreignTransferBtn">World Trust Bank Tag</button>
         </div>
+    
+
 
         <!-- Local Transfer Form -->
         <form id="localTransferForm" class="transfer-form">
@@ -38,6 +46,10 @@
 
             <label for="localAmount">Amount:</label>
             <input type="number" id="localAmount" placeholder="Enter amount" required>
+
+            <label for="foreignPin">Purpose/Add a Memo:</label>
+            <input type="text" id="localPurpose" placeholder="Holiday"    required="required">
+
 
             <label for="localPin">4-Digit Transfer Pin:</label>
             <input type="password" id="localPin" maxlength="4" pattern="\d{4}" placeholder="****" required>
@@ -52,7 +64,9 @@
             <input type="text" id="foreignAccountNumber" placeholder="Enter IBAN" required>
 
             <label for="foreignBankName">Account Name:</label>
-            <input type="text" id="foreignBankName" placeholder="Enter bank name" required>
+            <select name="bank" id="ForeignBanks">
+                <option value="banks"></option>
+            </select>
 
             <label for="localAmount">Enter Banking:</label>
             <input type="text" id="localAmount" placeholder="Enter Bank" required>
@@ -68,7 +82,7 @@
             <input type="text" id="localAmount" placeholder="KJHGBXXXX" required>
 
             <label for="localAmount">Account Type:</label>
-            <select>
+            <select id="accountType">
                 <option value="Savings">Savings Account</option>
                 <option value="Savings">Current Account</option>
                 <option value="Savings">Checking Account</option>
@@ -82,7 +96,12 @@
             <!-- <input type="text" id="localAmount" placeholder="Description" required> -->
 
             <label for="foreignPin">Select Country:</label>
-            <input type="text" required="required">
+            <select name="country" id="wcountries">
+                <option value="countries">Select Country</option>
+            </select>
+
+            <label for="foreignPin">Purpose/Add a Memo:</label>
+            <input type="text" id="foreignPurpose" placeholder="Holiday"  required="required">
 
             <label for="foreignPin">4-Digit Transfer Pin:</label>
             <input type="password" id="foreignPin" maxlength="4" pattern="\d{4}" placeholder="****" required>
@@ -94,7 +113,7 @@
         <form id="wireTransferForm" class="transfer-form hidden">
             <h2>Wire Transfer</h2>
             <label for="foreignAccountNumber">Recipient Account:</label>
-            <input type="text" id="foreignAccountNumber" placeholder="Enter IBAN" required>
+            <input type="text" id="wireAccountNumber" placeholder="Enter IBAN" required>
 
             <label for="foreignBankName">Account Name:</label>
             <input type="text" id="foreignBankName" placeholder="Enter bank name" required>
@@ -127,10 +146,12 @@
 
  
             <label for="foreignPin">Purpose/Add a Memo:</label>
-            <input type="text" placeholder="Holiday"    required="required">
+            <input type="text"  id="wirePurpose" placeholder="Holiday"    required="required">
 
             <label for="foreignPin">Select Country:</label>
-            <input type="text" required="required">
+            <select name="count" id="country">
+                <option value="select country">Select country</option>
+            </select>
 
             <label for="foreignPin">4-Digit Transfer Pin:</label>
             <input type="password" id="foreignPin" maxlength="4" pattern="\d{4}" placeholder="****" required>
@@ -140,13 +161,67 @@
 
     </div>
 
+
+    <div id="transactionSlipContainer" class="hiddens">
+        <div id="transactionSlip">
+            <h2>Transaction Receipt</h2><span id="close">X</span>
+            <h1>WellsFargo</h1>
+            <p><strong>Transaction ID:</strong> <span id="transId"></span></p>
+            <p><strong>Date:</strong> <span id="transDate"></span></p>
+            <p><strong>Amount:</strong> <span id="transAmount"></span></p>
+            <p><strong>Recipient:</strong> <span id="transRecipient"></span></p>
+            <p><strong>Country:</strong> <span id="transCountry"></span></p>
+            <p><strong>Account:</strong> <span id="transAccount"></span></p>
+            <p><strong>Purpose:</strong> <span id="transPurpose"></span></p>
+            <p><strong>Status:</strong> <span id="transStatus"></span></p>
+            <button id="print">Share Receipt</button>
+            <button id="download">Download Receipt</button>
+        </div>
+    </div>
+
+    <!-- Success pop up -->
+
+    <div id ="confirmTransaction">
+
+        <i class="fa fa-check-circle detail-icon"></i>
+        <h1 id="confirm-message">Transaction Successful</h1>
+        <div class="confirm-actions">
+            <button id="viewReceipt">View Receipt</button>
+        
+    
+    </div>
+    </div>
+
+    <div id ="declineTransaction">
+
+        
+        <img src="../IMG/sad emoji.png" height="60px" width="60px"> <span id="close-insufficient">X</span>
+        <h1 id="confirm-message">Transaction Declined</h1>
+        <div class="confirm-actions">
+            <button id="insuficientFunds">Insufficient Balance</button>
+        
+    
+    </div>
+    </div>
+
+    <div id ="Loading">
+        
+    </div>
+</div>
+
+    
+
     <!-- <div id="transactionHistorys">
         <table>
             <tr id="transactionHistory"></tr>
         </table>
     </div> -->
 
-    <script type="module" src="./JS/loadFunds.js"></script>
-    <script type="module" src="./JS/script.js"></script>
+   <script type="module" src="./JS/loadFunds.js"></script>
+<script type="module" src="./JS/script.js"></script>
+<script type="module" src=""></script>
+    
 </body>
 </html>
+
+
